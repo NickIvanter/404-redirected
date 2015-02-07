@@ -399,7 +399,7 @@ function wbz404_cleaningCron() {
 		$wpdb->query($query);
 
 		//Find unused urls
-		$query = "select id from " . $wpdb->prefix . "wbz404_redirects where status = " . $wpdb->escape(WBZ404_AUTO) . " status ";
+		$query = "select id from " . $wpdb->prefix . "wbz404_redirects where status = " . $wpdb->escape(WBZ404_AUTO) . " and ";
 		$query .= "timestamp <= " . $wpdb->escape($then) . " and id not in (";
 		$query .= "select redirect_id from " . $wpdb->prefix . "wbz404_logs";
 		$query .= ")";
