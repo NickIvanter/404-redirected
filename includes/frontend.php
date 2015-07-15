@@ -60,7 +60,16 @@ function wbz404_process404() {
 	$urlRequest   = $_SERVER['REQUEST_URI'];
 	$urlParts     = parse_url( $urlRequest );
 	$requestedURL = $urlParts['path'];
-	$requestedURL .= wbz404_SortQuery( $urlParts );
+
+	$queryArgs = wbz404_SortQuery( $urlParts );
+
+	/* The only case where we want the query string to be considered part of the URL we are processing
+	 * is when it contains 'page_id'. In all other cases, we want to strip the query args -- they are typically
+	 * the utm labels in those other situations, which we want to ignore.
+	 */
+	if ( ( strpos( $queryArgs, 'page_id' ) !== false ) ) {
+		$requestedURL .= $queryArgs;
+	}
 
 	//Get URL data if it's already in our database
 	$redirect = wbz404_loadRedirectData( $requestedURL );
