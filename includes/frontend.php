@@ -119,6 +119,20 @@ function wbz404_process404() {
 				wp_redirect( $permalink['link'], $options['default_redirect'] );
 				exit;
 			} else {
+
+				/* Redirect requests to non-existent category pages to the first page URL.
+				 */
+				$paged_pattern = '/\/page\/\d\d?\/?$/';
+
+				if ( preg_match( $paged_pattern, $requestedURL ) ) {
+
+					$target_url = preg_replace( $paged_pattern, '/', $requestedURL );
+
+					error_log( "Redirecting $requestedURL to $target_url in " . __FILE__ );
+
+					wp_redirect( $target_url, 302 );
+				}
+
 				//Check for incoming 404 settings
 				if ( $options['capture_404'] == '1' ) {
 					$redirect_id = wbz404_setupRedirect( $requestedURL, WBZ404_CAPTURED, 0, 0, $options['default_redirect'], 0 );
