@@ -119,6 +119,18 @@ function wbz404_process404() {
 				wp_redirect( $permalink['link'], $options['default_redirect'] );
 				exit;
 			} else {
+					/* Workaround for the issue where bbPress user profile pages would be
+					 * marked as 404 by the function handle_404() in the Wordpress core.
+					 */
+				$forums_user_pattern = '/\/forums\/users\//';
+				if ( preg_match( $forums_user_pattern, $requestedURL ) && function_exists( 'bbpress' ) ) {
+
+					$bbp = bbpress();
+					if ( !empty( $bbp->displayed_user ) ) {
+
+						return;
+					}
+				}
 
 				/* Redirect requests to non-existent category pages to the first page URL.
 				 */
