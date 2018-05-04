@@ -1,18 +1,23 @@
-=== 404 Redirected ===
-Contributors: rrolfe
-Donate link: http://www.weberz.com/
+=== Redirectioner ===
+Contributors: DeFries
+Donate link: https://remkusdevries.com/donate/
 Tags: 404, page not found, redirect, 301, 302, permanent redirect, temporary redirect, error
 Requires at least: 3.1
-Tested up to: 3.4.1
-Stable tag: 1.3.2
+Version: 1.4.9
+Tested up to: 4.7.3
+Stable tag: 1.4.9
 
 Creates automatic redirects for 404 traffic and page suggestions when matches are not found providing better service to your web visitors.
 
 == Description ==
 
-404 Redirected allows Wordpress admins to have control over their dead links and redirects from inside the admin panel. 404 Redirected records all URLs that users have visited and allows the admin to easily create 301 and 302 redirects to valid pages on their site. Redirects can also be created based on the best possible match for the URL the visitor was most likely trying to reach.
+Redirectioner allows WordPress admins to have control over their dead links and redirects from inside the admin panel. [Redirectioner](https://redirectioner.com) records all URLs that users have visited and allows the admin to easily create 301 and 302 redirects to valid pages on their site. Redirects can also be created based on the best possible match for the URL the visitor was most likely trying to reach.
 
-**Features:**
+> <strong>Support & Bug Reports</strong><br>
+> If you're in need of support or would like to file a bug report, please head over to our Github repository and [create a new issue.](https://github.com/thememix/redirectioner/issues)
+>
+
+= Features: =
 
 * Get list of 404 URLs as they happen inside the admin panel
 * Easily redirect 404 URLs to existing pages or choose to ignore the 404 error
@@ -38,7 +43,7 @@ Installation of 404 Redirect is simple:
 1. Use the `Settings -> 404 Redirected` options page to enable desired features.
 
 For the `suggested pages` feature to work you need to edit your 404.php template file to include the following code:
-`<?php if (function_exists('wbz404_suggestions')) { wbz404_suggestions(); } ?>`
+`<?php if (function_exists( 'wbz404_suggestions' ) ) { wbz404_suggestions(); } ?>`
 
 == Frequently Asked Questions ==
 
@@ -48,9 +53,9 @@ As long as the "Capture incoming 404 URLs" option is enabled in the options sect
 
 = Will there be a slow down on my site when running the plugin? =
 
-No there should be no noticeable slow down when running the plugin on your site.
+No, there should be no noticeable slow down when running the plugin on your site.
 
-= Will this plugin redirect my pages if I change my permalinks structure? = 
+= Will this plugin redirect my pages if I change my permalinks structure? =
 
 Yes! 404 Redirected records the page/post ID number and looks up the most current permalink before redirecting the user.
 
@@ -58,19 +63,65 @@ Yes! 404 Redirected records the page/post ID number and looks up the most curren
 
 No, that's not what this plugin is for. This plugin is designed to make your visitors experience better by automatically fixing 404 problems caused by typos.
 
-= Why doesn't anyone answer in the support forums? =
-
-I try to get to the support forums as often as I can. This plugin is just one of many things I have to work on. Sometimes it takes 6-8 months for me to get back to working it, I will work on trying to get better about this. In the meantime, please be patient or try finding me on Twitter/Facebook.
-
 == Screenshots ==
 
 1. Admin Options Screen
 2. Logs
 3. Create New Redirect
 
-== Changelog == 
+== Changelog ==
 
-= Version 1.3.2 = 
+= Version 1.4.9 =
+* Fixed parse error on PHP <5.4 due to use of short array syntax. [#30](https://github.com/ThemeMix/redirectioner/issues/30)
+
+= Version 1.4.8 =
+* Rename to Redirectioner
+* Update branding links
+* Fixed broken pagination counts. [#17](https://github.com/ThemeMix/redirectioner/issues/17)
+* Fixed PHP notices on admin screen. [#24](https://github.com/ThemeMix/redirectioner/issues/24)
+* Fixed line-breaks in admin notices. [#25](https://github.com/ThemeMix/redirectioner/issues/25)
+* Cleaned up query arguments handling. [#28](https://github.com/ThemeMix/redirectioner/issues/28)
+
+= Version 1.4.7 =
+* Fixed too strict data sanitation for the `wbz404_suggestions()` template tag
+* Fixed CSS class for suggested 404s div wrapper.
+
+= Version 1.4.6 =
+* Fixed bug where query vars were being stripped
+* Fixed a bug caused by plugin incorrectly injecting end-points turning up as 404s
+* Fixed log purging issues
+
+= Version 1.4.4 =
+* Fixed a [SQL bug](https://github.com/defries/404-redirected/issues/7)
+* Fixed a bug where [logs wouldn't get deleted](https://github.com/defries/404-redirected/issues/8)
+* Fixed a bug where [deactivating and activating the plugin would reset the stats to 0](https://github.com/defries/404-redirected/issues/9)
+* Fixed various [PHP notices](https://github.com/defries/404-redirected/issues/10)
+
+= Version 1.4.3 =
+
+* Updating a bug where a check for an ancient MySQL version would throw an error
+* Fixing integer bug in SQL query
+* General debug errors fixed as well.
+
+= Version 1.4.2 =
+
+* Introducing WordPress Coding Standards
+* Replace `wpdb::escape` for `esc_sql()`
+* Removing exotic translation function and replacing with default translation setup. In other words, the plugin is now translatable.
+
+= Version 1.4.1 =
+
+Released: 2016-06-06
+
+* Improved security hardening (bugfixing)
+
+= Version 1.4.0 =
+
+* Plugin takeover from rrolfe because of lack of maintenance in four years
+* Data sanitization added where needed (everywhere)
+* Fixed PHP notices
+
+= Version 1.3.2 =
 
 Released: 2012-08-29
 
@@ -84,7 +135,7 @@ Bug Fixes:
 * Added upgrade script functionality by implementing DB version checking
 * Performed general code cleanup to get rid of PHP NOTICES
 
-= Version 1.3.1 = 
+= Version 1.3.1 =
 
 Released: 2012-08-28
 
@@ -96,7 +147,7 @@ Bug Fixes:
 
 * Fixed bug that caused cron jobs not to register properly - Stopped automatic deletion of redirects and logs from happening
 
-= Version 1.3 = 
+= Version 1.3 =
 
 Released: 2012-08-28
 
@@ -116,7 +167,7 @@ Bug Fixes:
 * Fixed missing page title on Stats tab
 * Fixed bug causing posts/pages using <!--nextpage--> tag to not allow visitor beyond page 1
 
-= Version 1.2 = 
+= Version 1.2 =
 
 Released: 2011-12-06
 
@@ -134,20 +185,32 @@ Bug Fixes:
 * Fixed bug that caused plugin to remove and re-add redirects
 * Fixed bug that caused logs to display nothing when ordered by URL
 
-= Version 1.1 = 
+= Version 1.1 =
 
 Released: 2011-11-29
 
 * Fixed adding and editing of Tag & Category redirects
 * Fixed bug causing category redirects to incorrectly match external redirects
 
-= Version 1.0 = 
+= Version 1.0 =
 
 Released: 2011-11-20
 
 * Initial Release
 
 == Upgrade Notice ==
+
+= Version 1.4.6 =
+* Fixed bug where query vars were being stripped
+* Fixed a bug caused by plugin incorrectly injecting end-points turning up as 404s
+* Fixed log purging issues
+* General code improvements
+
+= Version 1.4.4 =
+* Fixed a [SQL bug](https://github.com/defries/404-redirected/issues/7)
+* Fixed a bug where [logs wouldn't get deleted](https://github.com/defries/404-redirected/issues/8)
+* Fixed a bug where [deactivating and activating the plugin would reset the stats to 0](https://github.com/defries/404-redirected/issues/9)
+* Fixed various [PHP notices](https://github.com/defries/404-redirected/issues/10)
 
 = Version 1.3 =
 
